@@ -5,4 +5,6 @@
     <string name="title_drug">กินยา</string>
     <string name="title_search">ค้นหา</string>
     <string name="title_profile">บัญชี</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>

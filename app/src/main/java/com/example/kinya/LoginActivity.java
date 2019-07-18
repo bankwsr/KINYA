@@ -11,6 +11,13 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInApi;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -31,12 +38,11 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         //toolbar = findViewById(R.id.toolbar2);
+        //toolbar.setTitle("Login");
         progressBar = findViewById(R.id.progressBar);
         userEmail = findViewById(R.id.etUserEmail);
         userPassword = findViewById(R.id.etUserPassword);
         userSignin = findViewById(R.id.btnUserSignin);
-
-        //toolbar.setTitle("Login");
 
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -48,10 +54,10 @@ public class LoginActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
+                                if (task.isSuccessful()) {
                                     Toast.makeText(LoginActivity.this, "ยินดีต้อนรับ", Toast.LENGTH_LONG).show();
                                     startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                                }else{
+                                } else {
                                     Toast.makeText(LoginActivity.this, task.getException().getMessage(),
                                             Toast.LENGTH_LONG).show();
                                 }
@@ -59,6 +65,5 @@ public class LoginActivity extends AppCompatActivity {
                         });
             }
         });
-
     }
 }

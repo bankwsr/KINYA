@@ -14,6 +14,7 @@
         android:background="?attr/colorPrimary"
         android:minHeight="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyle"
@@ -34,6 +35,8 @@
         tools:layout_editor_absoluteX="98dp"
         tools:layout_editor_absoluteY="152dp" />
 
+
+
     <EditText
         android:id="@+id/etUserPassword"
         android:layout_width="match_parent"
@@ -46,10 +49,15 @@
 
     <Button
         android:id="@+id/btnUserSignin"
-        android:layout_width="match_parent"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:text="Login"
+        android:text="เข้าสู่ระบบ"
         tools:layout_editor_absoluteX="98dp"
         tools:layout_editor_absoluteY="273dp" />
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/sign_in_button"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
