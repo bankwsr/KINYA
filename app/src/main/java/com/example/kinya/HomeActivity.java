@@ -26,7 +26,6 @@ public class HomeActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     mTextMessage.setText(R.string.title_home);
-                    startActivity(new Intent(HomeActivity.this, HomeActivity.class));
                     return true;
                 case R.id.navigation_drug:
                     mTextMessage.setText(R.string.title_drug);

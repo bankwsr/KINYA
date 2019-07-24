@@ -16,7 +16,7 @@
             android:label="@string/title_activity_profile"></activity>
         <activity android:name=".HomeActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name=".LoginActivity"
+        <activity android:name=".RegisActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".MainActivity">
             <intent-filter>

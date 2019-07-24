@@ -18,7 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar toolbar;
+    /*Toolbar toolbar;
     ProgressBar progressBar;
     EditText email, password;
     Button signup, signin;
@@ -65,7 +65,57 @@ public class MainActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                startActivity(new Intent(MainActivity.this, RegisActivity.class));
+            }
+        });
+    }
+}*/
+
+    Toolbar toolbar;
+    ProgressBar progressBar;
+    EditText userEmail, userPassword;
+    Button userSignin, userSignup;
+
+    FirebaseAuth firebaseAuth;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        toolbar = findViewById(R.id.toolbar2);
+        //toolbar.setTitle("Login");
+        progressBar = findViewById(R.id.progressBar);
+        userEmail = findViewById(R.id.etUserEmail);
+        userPassword = findViewById(R.id.etUserPassword);
+        userSignin = findViewById(R.id.btnUserSignin);
+        userSignup = findViewById(R.id.btnSignup);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        userSignin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                progressBar.setVisibility(View.VISIBLE);
+                firebaseAuth.signInWithEmailAndPassword(userEmail.getText().toString(), userPassword.getText().toString())
+                        .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
+                                    Toast.makeText(MainActivity.this, "ยินดีต้อนรับ", Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(MainActivity.this, ProfileActivity.class));
+                                } else {
+                                    Toast.makeText(MainActivity.this, task.getException().getMessage(),
+                                            Toast.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+            }
+        });
+        userSignup.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MainActivity.this, RegisActivity.class));
             }
         });
     }
