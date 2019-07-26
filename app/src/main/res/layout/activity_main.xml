@@ -5,73 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".RegisActivity">
+    tools:context=".MainActivity"
+    android:id="@+id/mainLayout"
+    android:background="@drawable/animated_bg"
+    android:fitsSystemWindows="true" >
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark">
-
-        <ProgressBar
-            android:id="@+id/progressBar"
-            style="?android:attr/progressBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:visibility="gone" />
-
-    </androidx.appcompat.widget.Toolbar>
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="141dp"
+        android:layout_height="84dp"
+        android:layout_gravity="end"
+        android:visibility="gone" />
 
     <EditText
         android:id="@+id/etUserEmail"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="250dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="152dp" />
+        android:textColor="#ffff"
+        app:layout_constraintStart_toStartOf="@+id/etUserPassword"
+        tools:layout_editor_absoluteY="224dp" />
 
     <EditText
         android:id="@+id/etUserPassword"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginBottom="20dp"
         android:ems="10"
         android:hint="Password"
+        android:textColor="#ffff"
         android:inputType="textPassword"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="214dp" />
+        tools:layout_editor_absoluteX="40dp"
+        tools:layout_editor_absoluteY="292dp" />
 
     <Button
         android:id="@+id/btnUserSignin"
         android:layout_width="300dp"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:text="Login"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="273dp" />
+        android:layout_gravity="center"
+        android:text="เข้าสู่ระบบ"
+        android:textColor="#ffff"
+        android:background="@drawable/outline_button_w"
+        app:layout_constraintEnd_toEndOf="@+id/etUserPassword"
+        app:layout_constraintHorizontal_bias="0.49"
+        app:layout_constraintStart_toStartOf="@+id/etUserPassword"
+        tools:layout_editor_absoluteY="397dp" />
 
     <com.google.android.gms.common.SignInButton
         android:id="@+id/sign_in_button"
         android:layout_width="300dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_height="wrap_content" />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/btnUserSignin"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/btnUserSignin"
+        app:layout_constraintTop_toBottomOf="@+id/btnUserSignin" />
 
     <Button
         android:id="@+id/btnSignup"
         android:layout_width="300dp"
+        android:layout_height="20dp"
         android:layout_gravity="center"
-        android:layout_height="wrap_content"
-        android:text="Register"
-        tools:layout_editor_absoluteX="98dp"
-        tools:layout_editor_absoluteY="273dp" />
+        android:layout_marginTop="200dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/outline_button_ts"
+        android:text="ยังไม่มีบัญชีใ่ชไหม? กดที่นี่"
+        android:textColor="#ffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/sign_in_button"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sign_in_button"
+        app:layout_constraintTop_toBottomOf="@+id/sign_in_button"
+        app:layout_constraintVertical_bias="0.027" />
 
 </LinearLayout>
