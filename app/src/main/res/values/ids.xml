@@ -2,5 +2,4 @@
 <resources>
     <item name="progressBar" type="id" />
     <item name="toolbar" type="id" />
-    <item name="editTextDetailName" type="id" />
 </resources>
