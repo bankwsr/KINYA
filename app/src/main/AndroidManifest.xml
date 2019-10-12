@@ -11,33 +11,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".ProfileFragment"
-            android:label="@string/title_profile" />
-        <activity
-            android:name=".SearchFragment"
-            android:label="@string/title_search" />
-        <activity
-            android:name=".HomeActivity"
+        <activity android:name=".ProfileActivity"
+            android:label="@string/title_profile"/>
+        <activity android:name=".HomeActivity"
             android:label="@string/title_home"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".HomeFragment"
-            android:label="@string/title_home"
-            android:screenOrientation="portrait" />
-        <activity
-            android:name=".RegisActivity"
-            android:fitsSystemWindows="true"
-            android:parentActivityName=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoAppTheme" />
-        <activity
-            android:name=".MainActivity"
-            android:fitsSystemWindows="true"
-            android:theme="@style/NoAppTheme">
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/NoAppTheme"
+            android:fitsSystemWindows="true"/>
+        <activity android:name=".MainActivity"
+            android:theme="@style/NoAppTheme"
+            android:fitsSystemWindows="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
