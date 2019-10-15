@@ -41,25 +41,29 @@ public class ProfileFragment extends Fragment {
                              @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.fragment_profile, container, false);
 
-        TextView mTextMessage = (TextView) v.findViewById(R.id.userEmail);
-        TextView userEmail = (TextView) v.findViewById(R.id.userEmail);
-        Button userLogout = (Button) v.findViewById(R.id.userLogout);
-        ImageView profile_pic = (ImageView) v.findViewById(R.id.imageProfile);
+        TextView mTextMessage = v.findViewById(R.id.userEmail);
+        TextView userEmail = v.findViewById(R.id.userEmail);
+        TextView userName = v.findViewById(R.id.userName);
+        Button userLogout = v.findViewById(R.id.userLogout);
+        ImageView profile_pic = v.findViewById(R.id.imageProfile);
 
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
 
-        firebaseAuth = firebaseAuth.getInstance();
+        firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
         //mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
 
-        userEmail.setText(firebaseUser.getDisplayName());
-        profile_pic.setImageURI(firebaseUser.getPhotoUrl().);
+        //userName.setText(firebaseUser.getDisplayName());
+        //userEmail.setText(firebaseUser.getEmail());
+        //profile_pic.setImageURI(firebaseUser.getPhotoUrl());
+        //Picasso.get().load(R.id.imageProfile).into(profile_pic);
         userLogout.setOnClickListener(view ->Logout());
-
         return v;
+
+
     }
 
     private void Logout() {
@@ -68,6 +72,7 @@ public class ProfileFragment extends Fragment {
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
+        firebaseAuth.signOut();
         //mGoogleSignInClient.signOut().addOnCompleteListener((Executor) this, task -> updateUI(null));
     }
 
@@ -80,12 +85,10 @@ public class ProfileFragment extends Fragment {
             text.append("Info : \n");
             text.append(name + "\n");
             text.append(email);
-            //Picasso.with(ProfileFragment.this).load(photo).into(image);
+            Picasso.with(ProfileFragment.this).load(photo).into(image);
         } else {
             text.setText("Firebase Login \n");
-            //Picasso.with(ProfileFragment.this).load(R.drawable.ic_account_circle_black_24dp).into(image);
-            //btn_logout.setVisibility(View.INVISIBLE);
-            //btn_login.setVisibility(View.VISIBLE);
+            Picasso.with(ProfileFragment.this).load(R.drawable.ic_account_circle_black_24dp).into(image);
         }
     }
 }

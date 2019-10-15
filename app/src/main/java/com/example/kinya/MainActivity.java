@@ -30,7 +30,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 public class MainActivity extends AppCompatActivity {
 
     static final int GOOGLE_SIGN_IN = 123;
-    FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
 
     //Toolbar toolbar;
     ProgressBar progressBar;
@@ -57,6 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
 
+        if(firebaseAuth.getCurrentUser() != null){
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            startActivity(new Intent(MainActivity.this,HomeActivity.class));
+        }
+
         GoogleSignInOptions googleSignInOptions = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
@@ -65,11 +70,6 @@ public class MainActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
 
         userGoogle.setOnClickListener(v -> SignInGoogle());
-
-        if(firebaseAuth.getCurrentUser() != null){
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-            //updateUI(user);
-        }
 
         userSignin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void firebaseAuthWithGoogle(GoogleSignInAccount account) {
         Log.d("TAG","firebaseAuthWithGoogle: " + account.getId());
-
         AuthCredential credential = GoogleAuthProvider.getCredential(account.getIdToken(),null);
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(this, task -> {
             if(task.isSuccessful()){
@@ -137,19 +136,4 @@ public class MainActivity extends AppCompatActivity {
             }
     }
 }
-    /*private void updateUI(FirebaseUser user) {
-        if(user != null){
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            String photo = String.valueOf(user.getPhotoUrl());
-
-            text.append("Info : \n");
-            text.append(name + "\n");
-            text.append(email);
-
-            Picasso.get().load(photo).into(imageGoogle);
-        }else{
-
-        }
-    }*/
 }
