@@ -1,6 +1,7 @@
 package com.example.kinya;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -26,9 +27,9 @@ import java.util.concurrent.Executor;
 public class ProfileFragment extends Fragment {
 
     private TextView mTextMessage;
-    TextView text;
+    TextView text,userName,userEmail;
     Button userLogout;
-    ImageView image;
+    ImageView image,profile_pic;
 
     FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -54,16 +55,13 @@ public class ProfileFragment extends Fragment {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
-        //mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
 
-        //userName.setText(firebaseUser.getDisplayName());
-        //userEmail.setText(firebaseUser.getEmail());
-        //profile_pic.setImageURI(firebaseUser.getPhotoUrl());
-        //Picasso.get().load(R.id.imageProfile).into(profile_pic);
+        userName.setText(firebaseUser.getDisplayName());
+        userEmail.setText(firebaseUser.getEmail());
+        Picasso.with(getActivity()).load(firebaseUser.getPhotoUrl()).into(profile_pic);
         userLogout.setOnClickListener(view ->Logout());
+
         return v;
-
-
     }
 
     private void Logout() {
@@ -74,21 +72,5 @@ public class ProfileFragment extends Fragment {
         startActivity(intent);
         firebaseAuth.signOut();
         //mGoogleSignInClient.signOut().addOnCompleteListener((Executor) this, task -> updateUI(null));
-    }
-
-    private void updateUI(FirebaseUser user) {
-        if (user != null) {
-            String name = user.getDisplayName();
-            String email = user.getEmail();
-            String photo = String.valueOf(user.getPhotoUrl().toString());
-
-            text.append("Info : \n");
-            text.append(name + "\n");
-            text.append(email);
-            Picasso.with(ProfileFragment.this).load(photo).into(image);
-        } else {
-            text.setText("Firebase Login \n");
-            Picasso.with(ProfileFragment.this).load(R.drawable.ic_account_circle_black_24dp).into(image);
-        }
     }
 }
