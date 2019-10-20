@@ -3,6 +3,7 @@ package com.example.kinya;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,6 +22,10 @@ public class HomeActivity extends AppCompatActivity {
     FirebaseUser firebaseUser;
 
     GoogleSignInClient mGoogleSignInClient;
+
+    private long backPressedTime;
+    private Toast backToast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,19 +51,18 @@ public class HomeActivity extends AppCompatActivity {
         mGoogleSignInClient = GoogleSignIn.getClient(this, googleSignInOptions);
     }
 
-    /*private void checkUserStatus(){
-
-        if(user != null){
-            startActivity(new Intent(HomeActivity.this,HomeActivity.class));
+    @Override
+    public void onBackPressed(){
+        if(backPressedTime + 2000 > System.currentTimeMillis()){
+            //backToast.cancel();
+            super.onBackPressed();
+            return;
         }else{
-            startActivity(new Intent(HomeActivity.this,RegisActivity.class));
+            Toast.makeText(getBaseContext(), "กด Back อีกครั้งเพื่อออกจากแอป",Toast.LENGTH_SHORT).show();
+           // backToast.show();
             finish();
         }
-    }*/
-
-    public boolean onSupportnavigateUp(){
-        onBackPressed();
-        return super.onSupportNavigateUp();
+        backPressedTime = System.currentTimeMillis();
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
